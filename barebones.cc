@@ -44,13 +44,10 @@ int main(int argc, char* argv[]) {
   window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title(GTK_WINDOW(window), "CEF3 Bare Bones");
   // Set the window to 400x400
-  gtk_window_set_default_size(GTK_WINDOW(window), 400, 400);
+  gtk_window_set_default_size(GTK_WINDOW(window), 400, 600);
 
   vbox = gtk_vbox_new(FALSE, 0);
   gtk_container_add(GTK_CONTAINER(window), vbox);
-
-  hbox = gtk_hbox_new(FALSE, 0);
-  gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
 
   g_signal_connect(window, "destroy", G_CALLBACK(destroy), NULL);
 
@@ -60,14 +57,9 @@ int main(int argc, char* argv[]) {
   g_handler = new BareBonesHandler();
 
   info.SetAsChild(hbox);
-  CefBrowserHost::CreateBrowserSync(info, g_handler.get(),
-    "http://code.google.com", browserSettings);
-  CefBrowserHost::CreateBrowserSync(info, g_handler.get(),
-    "http://www.github.com", browserSettings);
-
   info.SetAsChild(vbox);
   CefBrowserHost::CreateBrowserSync(info, g_handler.get(),
-    "http://www.google.com", browserSettings);
+    "https://github.com", browserSettings);
 
   gtk_widget_show_all(window);
 
